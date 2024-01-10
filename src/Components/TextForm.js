@@ -38,7 +38,7 @@ export default function TextForm(props) {
           <div className="mb-3 my-3">
             <textarea
               style={{
-                backgroundColor: props.mode === "light" ? "white" : "grey",
+                backgroundColor: props.mode === "light" ? "white" : "#042743",
                 color: props.mode === "light" ? "black" : "white",
               }}
               onChange={change}
@@ -52,6 +52,7 @@ export default function TextForm(props) {
             type="button"
             onClick={upperCase}
             className="btn btn-primary m-1"
+            disabled={text.length == 0}
           >
             UpperCase
           </button>
@@ -59,13 +60,24 @@ export default function TextForm(props) {
             type="button"
             onClick={lowerCase}
             className="btn btn-primary m-1"
+            disabled={text.length == 0}
           >
             LowerCase
           </button>
-          <button type="button" onClick={copy} className="btn btn-primary m-1">
+          <button
+            type="button"
+            onClick={copy}
+            className="btn btn-primary m-1"
+            disabled={text.length == 0}
+          >
             Copy
           </button>
-          <button type="button" onClick={clear} className="btn btn-primary m-1">
+          <button
+            type="button"
+            onClick={clear}
+            className="btn btn-primary m-1"
+            disabled={text.length == 0}
+          >
             Clear
           </button>
         </div>
@@ -76,9 +88,22 @@ export default function TextForm(props) {
       >
         <h3>Word Details</h3>
         <p>
-          No of words {text.split(" ").length} and characters are {text.length}
+          No of words{" "}
+          {
+            text.split(/\s+/).filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          and characters are {text.length}
         </p>
-        <h5>It will take {0.008 * text.split(" ").length} minutes to read</h5>
+        <h5>
+          It will take{" "}
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length != 0;
+            }).length}{" "}
+          minutes to read
+        </h5>
         <h2>Preview</h2>
         <p>{text}</p>
       </div>

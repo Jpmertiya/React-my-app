@@ -8,12 +8,12 @@ import About from "./Components/About";
 
 function App() {
   const [mode, setMode] = useState("light");
-  const [alert, setAlert] = useState({ msg: "", type: "success " });
+  const [alert, setAlert] = useState({ msg: "Made with Love ❤️", type: "success " });
 
   const showAlert = (message, type) => {
     setAlert({ msg: message, type: type });
     setTimeout(() => {
-      setAlert({ msg: "", type: "success " });
+      setAlert({ msg: "Made with Love 💕", type: "success " });
     }, 1500);
   };
 
@@ -44,7 +44,7 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route path="/about" element={<About mode={mode} />}></Route>
         </Routes>
       </Router>
     </>
